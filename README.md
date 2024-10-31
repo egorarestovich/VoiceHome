@@ -23,3 +23,5 @@ I make new design and new functions in BETA version, who want to help, write me!
 Telegramm: https://t.me/egorarestovich
 
 Sorry for my English :)
+
+English translate later!
