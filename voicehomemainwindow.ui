@@ -28,25 +28,28 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">color:black;</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="HomeButton">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>50</x>
       <y>580</y>
       <width>75</width>
       <height>75</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: none;</string>
+     <string notr="true">border:none;</string>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="icon">
      <iconset resource="images.qrc">
-      <normaloff>:/images/HomeIcon.png</normaloff>:/images/HomeIcon.png</iconset>
+      <normaloff>:/images/homeiconv2.png</normaloff>:/images/homeiconv2.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -65,14 +68,14 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: none;</string>
+     <string notr="true">border:none;</string>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="icon">
      <iconset resource="images.qrc">
-      <normaloff>:/images/ChatIcon.png</normaloff>:/images/ChatIcon.png</iconset>
+      <normaloff>:/images/chaticonv2.png</normaloff>:/images/chaticonv2.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -81,89 +84,12 @@
      </size>
     </property>
    </widget>
-   <widget class="QLineEdit" name="commandline">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>500</y>
-      <width>481</width>
-      <height>60</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit {
-    background-color: black; /* Черный фон */
-    color: white;            /* Белый текст */
-    border: 1px solid gray;  /* Серый цвет рамки */
-}</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="addcommand">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>500</y>
-      <width>180</width>
-      <height>60</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: none;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="images.qrc">
-      <normaloff>:/images/addbutton.png</normaloff>:/images/addbutton.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>180</width>
-      <height>60</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="deletecommand">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>500</y>
-      <width>180</width>
-      <height>60</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: none;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="images.qrc">
-      <normaloff>:/images/delete_button-removebg-preview.png</normaloff>:/images/delete_button-removebg-preview.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>180</width>
-      <height>60</height>
-     </size>
-    </property>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>881</width>
+      <width>901</width>
       <height>501</height>
      </rect>
     </property>
@@ -205,49 +131,241 @@
       </widget>
      </item>
     </layout>
+    <zorder>temp</zorder>
+    <zorder>co2</zorder>
+    <zorder>vlazh</zorder>
    </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QLabel" name="SvetLabel">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>900</width>
-      <height>491</height>
+      <x>40</x>
+      <y>80</y>
+      <width>251</width>
+      <height>201</height>
      </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>600</y>
-      <width>611</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
     </property>
     <property name="text">
-     <string>Что бы отправить комманду, нажмите на неё два раза</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="images.qrc">:/images/IconSvet.png</pixmap>
     </property>
    </widget>
+   <widget class="QCheckBox" name="CheckBoxSvet">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>90</y>
+      <width>81</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox::indicator:unchecked {
+    image: url(:/images/CheckBoxOn.png);
+}
+QCheckBox::indicator:checked {
+    image: url(:/images/CheckBoxOff.png);
+}
+QCheckBox {
+    background-color: rgba(255, 255, 255, 0);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>75</width>
+      <height>35</height>
+     </size>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="FanLabel">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>80</y>
+      <width>251</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="images.qrc">:/images/IconFan.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="CheckBoxFan">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>90</y>
+      <width>81</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox::indicator:unchecked {
+    image: url(:/images/CheckBoxOn.png);
+}
+QCheckBox::indicator:checked {
+    image: url(:/images/CheckBoxOff.png);
+}
+QCheckBox {
+    background-color: rgba(255, 255, 255, 0);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/CheckBoxOn.png</normaloff>:/images/CheckBoxOn.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>75</width>
+      <height>35</height>
+     </size>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ChainikLabel">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>360</y>
+      <width>251</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="images.qrc">:/images/IconChainik.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="CheckBoxChainik">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>370</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox::indicator:unchecked {
+    image: url(:/images/CheckBoxOn.png);
+}
+QCheckBox::indicator:checked {
+    image: url(:/images/CheckBoxOff.png);
+}
+QCheckBox {
+    background-color: rgba(255, 255, 255, 0);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>CheckBox</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="UserCommandButton">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>360</y>
+      <width>251</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(34, 34, 34);
+border-radius: 20px;</string>
+    </property>
+    <property name="text">
+     <string>Ваше устройство</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="CheckBoxUserCommand">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>370</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox::indicator:unchecked {
+    image: url(:/images/CheckBoxOn.png);
+}
+QCheckBox::indicator:checked {
+    image: url(:/images/CheckBoxOff.png);
+}
+QCheckBox {
+    background-color: rgba(255, 255, 255, 0);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>CheckBox</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SettingsButton">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>10</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/settings icon.png</normaloff>:/images/settings icon.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <zorder>HomeButton</zorder>
+   <zorder>CommandsButton</zorder>
+   <zorder>verticalLayoutWidget</zorder>
+   <zorder>SvetLabel</zorder>
+   <zorder>FanLabel</zorder>
+   <zorder>CheckBoxFan</zorder>
+   <zorder>CheckBoxSvet</zorder>
+   <zorder>ChainikLabel</zorder>
+   <zorder>CheckBoxChainik</zorder>
+   <zorder>SettingsButton</zorder>
+   <zorder>UserCommandButton</zorder>
+   <zorder>CheckBoxUserCommand</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

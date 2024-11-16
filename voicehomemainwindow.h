@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QListWidgetItem>
+#include <QDir>
+#include "renameusercommanddialog.h"
 
 namespace Ui {
 class VoiceHomeMainWindow;
@@ -22,20 +24,22 @@ private slots:
 
     void on_HomeButton_clicked();
 
-    void on_addcommand_clicked();
+    void on_CheckBoxSvet_stateChanged(int arg1);
 
+    void on_CheckBoxFan_stateChanged(int arg1);
 
-    void on_deletecommand_clicked();
+    void on_CheckBoxChainik_stateChanged(int arg1);
 
-    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
+    void on_CheckBoxUserCommand_stateChanged(int arg1);
+
+    void on_UserCommandButton_clicked();
 
 public slots:
     void voicehomeprep();
 
-    void setcommand();
+    void writebluetooth(int command);
 
-    void writecommand();
-
+    void WriteOnUserButton(QString text);
 private:
     Ui::VoiceHomeMainWindow *ui;
 };

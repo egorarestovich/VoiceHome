@@ -14,15 +14,18 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    renameusercommanddialog.cpp \
     voicehome.cpp \
     voicehomemainwindow.cpp
 
 HEADERS += \
+    renameusercommanddialog.h \
     voicehome.h \
     ui_voicehome.h \
     voicehomemainwindow.h
 
 FORMS += \
+    renameusercommanddialog.ui \
     voicehome.ui \
     voicehomemainwindow.ui
 
