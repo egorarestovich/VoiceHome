@@ -8,8 +8,7 @@ It write command in bluetooth: 1,2,3,4,5,6,7,8
 
 I want to add function to change mac adress, but i'm one, so...
 
+Write me, if you want to help: 
 Telegramm: https://t.me/egorarestovich
-
-Sorry for my English :)
 
 English translate later!
