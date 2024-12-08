@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/ChatIcon.png</file>
+        <file>images/delete_button-removebg-preview.png</file>
+        <file>images/HomeIcon.png</file>
+        <file>images/voicehomelogo-removebg-preview(1).png</file>
+        <file>images/IconSvet.png</file>
+        <file>images/CheckBoxOff.png</file>
+        <file>images/CheckBoxOn.png</file>
+        <file>images/IconFan.png</file>
+        <file>images/IconChainik.png</file>
+        <file>images/settings icon.png</file>
+        <file>images/chaticonv2.png</file>
+        <file>images/homeiconv2.png</file>
+        <file>images/voicehomelogo.ico</file>
+    </qresource>
+</RCC>
