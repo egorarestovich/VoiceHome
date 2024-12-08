@@ -17,6 +17,7 @@ RenameUserCommandDIalog::RenameUserCommandDIalog(QWidget *parent) :
     ui(new Ui::RenameUserCommandDIalog)
 {
     ui->setupUi(this);
+
 }
 
 RenameUserCommandDIalog::~RenameUserCommandDIalog()

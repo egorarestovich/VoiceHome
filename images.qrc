@@ -12,5 +12,6 @@
         <file>images/settings icon.png</file>
         <file>images/chaticonv2.png</file>
         <file>images/homeiconv2.png</file>
+        <file>images/voicehomelogo.ico</file>
     </qresource>
 </RCC>

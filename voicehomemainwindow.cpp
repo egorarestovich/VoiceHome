@@ -2,14 +2,10 @@
 #include <voicehomemainwindow.h>
 #include "ui_voicehomemainwindow.h"
 #include <renameusercommanddialog.h>
+#include <voicehome.h>
 
 #include <QVector>
 #include <QMessageBox>
-#include <QBluetoothLocalDevice>
-#include <QBluetoothDeviceDiscoveryAgent>
-#include <QBluetoothDeviceInfo>
-#include <QBluetoothSocket>
-#include <QBluetoothUuid>
 #include <QTimer>
 #include <QFile>
 #include <QTextStream>
@@ -19,11 +15,11 @@
 #include <QString>
 #include <QListWidgetItem>
 #include <QCheckBox>
+#include <QSerialPort>
+#include <QSerialPortInfo>
 
-QBluetoothAddress targetAddress2("00:19:06:34:DD:B5");
-QBluetoothUuid serialPortUuid2 = QBluetoothUuid(QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
-QBluetoothAddress addr2(targetAddress2);
-QBluetoothSocket *socket2 = new QBluetoothSocket(QBluetoothServiceInfo::RfcommProtocol);
+QString portname = "COM3";
+QSerialPort serialport;
 
 QString pathtovcres2 = "C:/vcres";
 QDir vcresdir2;
@@ -35,14 +31,48 @@ VoiceHomeMainWindow::VoiceHomeMainWindow(QWidget *parent) :
     ui(new Ui::VoiceHomeMainWindow)
 {
     ui->setupUi(this);
-
 }
 
 VoiceHomeMainWindow::~VoiceHomeMainWindow()
 {
     delete ui;
 }
+void VoiceHomeMainWindow::openconnect(){
+    try {
+        QList<QSerialPortInfo> availablePorts = QSerialPortInfo::availablePorts();
+
+        bool portFound = false;
+        for (const QSerialPortInfo &portInfo : availablePorts) {
+            if (portInfo.portName() == portname) {
+                portFound = true;
+                break;
+            }
+        }
+        if (portFound == true && serialport.isOpen() == false) {
+            serialport.setPortName(portname);
+            if (serialport.open(QIODevice::ReadWrite)) {
+                serialport.setBaudRate(QSerialPort::Baud9600);
+                serialport.setDataBits(QSerialPort::Data8);
+                serialport.setParity(QSerialPort::NoParity);
+                serialport.setStopBits(QSerialPort::OneStop);
+                serialport.setFlowControl(QSerialPort::NoFlowControl);
+            } else {
+                QMessageBox::warning(nullptr, "Ошибка COM порта", "Не удалось открыть COM-порт!");
+                openconnect();
+            }
+        }
+        else {
+                QMessageBox::warning(nullptr, "Ошибка COM порта", "COM-порт не доступен!\
+    \nВозможное решение:\nПопробуйте подключить VoiceHome к COM порту №3");
+                openconnect();
+        }
+    } catch (const std::exception &e) {
+        QMessageBox::critical(nullptr, "Error", "Произошла ошибка: " + QString::fromStdString(e.what()));
+        openconnect();
+    }
+}
 void VoiceHomeMainWindow::voicehomeprep(){
+    openconnect();
     if(!vcresdir2.exists(pathtovcres2)){
         vcresdir2.mkpath(pathtovcres2);
     }
@@ -62,34 +92,44 @@ void VoiceHomeMainWindow::voicehomeprep(){
     ui->temp->setVisible(false);
     ui->co2->setVisible(false);
     ui->vlazh->setVisible(false);
-    ui->HomeLayout->setEnabled(false);
+    ui->co2text->setVisible(false);
+    ui->vltext->setVisible(false);
+    ui->temptext->setVisible(false);
     ui->CommandsButton->setVisible(true);
     ui->HomeButton->setVisible(true);
-    socket2->connectToService(addr2, serialPortUuid2);
-    QTimer *timer = new QTimer();
-    QObject::connect(timer, &QTimer::timeout, [&]() {
-        QObject::connect(socket2, &QBluetoothSocket::readyRead, [&]() {
-            while (socket2->canReadLine()) {
-                QByteArray data = socket2->readLine();
-                QVector <QString> listofdata;
-                QString datanow = "";
-                for(int i = 0; i < data.size(); i++){
-                    if(data[i] != ':'){
-                        datanow+=data[i];
-                    }
-                    else{
-                        listofdata.push_back(datanow);
-                        datanow=";";
-                    }
+
+    connect(&serialport, &QSerialPort::readyRead, [&]() {
+        while (serialport.canReadLine()) {
+            QByteArray data = serialport.readLine();
+            qDebug() << data;
+
+            QString decodedData = QString::fromUtf8(data);
+
+            decodedData = decodedData.trimmed();
+
+            QVector<QString> listofdata;
+            QString datanow = "";
+            for (int i = 0; i < decodedData.size(); i++) {
+                if (decodedData[i] != ':') {
+                    datanow += decodedData[i];
+                } else {
+                    listofdata.push_back(datanow);
+                    datanow = "";
                 }
+            }
+            if (!datanow.isEmpty()) {
                 listofdata.push_back(datanow);
+            }
+
+            if (listofdata.size() >= 3) {
                 ui->temp->setText(listofdata[0]);
                 ui->vlazh->setText(listofdata[1]);
                 ui->co2->setText(listofdata[2]);
             }
-        });
+        }
     });
-    timer->start(1000);
+
+
 }
 
 void VoiceHomeMainWindow::on_HomeButton_clicked()
@@ -97,7 +137,9 @@ void VoiceHomeMainWindow::on_HomeButton_clicked()
     ui->temp->setVisible(true);
     ui->co2->setVisible(true);
     ui->vlazh->setVisible(true);
-    ui->HomeLayout->setEnabled(false);
+    ui->co2text->setVisible(true);
+    ui->vltext->setVisible(true);
+    ui->temptext->setVisible(true);
     ui->CheckBoxSvet->setVisible(false);
     ui->SvetLabel->setVisible(false);
     ui->CheckBoxFan->setVisible(false);
@@ -114,7 +156,9 @@ void VoiceHomeMainWindow::on_CommandsButton_clicked()
     ui->temp->setVisible(false);
     ui->co2->setVisible(false);
     ui->vlazh->setVisible(false);
-    ui->HomeLayout->setEnabled(false);
+    ui->co2text->setVisible(false);
+    ui->vltext->setVisible(false);
+    ui->temptext->setVisible(false);
     ui->CheckBoxSvet->setVisible(true);
     ui->SvetLabel->setVisible(true);
     ui->CheckBoxFan->setVisible(true);
@@ -124,26 +168,32 @@ void VoiceHomeMainWindow::on_CommandsButton_clicked()
     ui->UserCommandButton->setVisible(true);
     ui->CheckBoxUserCommand->setVisible(true);
 }
-void VoiceHomeMainWindow::writebluetooth(int command){
-    try{
+
+void VoiceHomeMainWindow::writeSerial(int command) {
+    try {
         QString message = QString::number(command);
-        socket2->write(message.toUtf8());
-    }
-    catch(QBluetoothLocalDevice::Error error){
-        QString errorString = QString("Bluetooth Error: %1").arg(static_cast<int>(error));
-        QMessageBox::critical(this, "err", errorString);
+        QByteArray data = message.toUtf8();
+        qDebug() << data;
+        if (serialport.isOpen()) {
+            serialport.write(data);
+        } else {
+            throw std::runtime_error("COM порт не открыт!");
+            openconnect();
+        }
+    } catch (const std::exception &e) {
+        QString errorString = QString("Serial Port Error: %1").arg(e.what());
+        QMessageBox::critical(this, "Error", errorString);
     }
 }
 
 
 void VoiceHomeMainWindow::on_CheckBoxSvet_stateChanged(int arg1)
 {
-    qDebug() << "State changed to:" << arg1; // Отладочное сообщение
     if (arg1 == Qt::Checked) {
-        writebluetooth(2);
+        writeSerial(2);
         QMessageBox::about(this, "ОК", "Свет выключен");
     } else {
-        writebluetooth(1);
+        writeSerial(1);
         QMessageBox::about(this, "ОК", "Свет включен");
     }
 }
@@ -152,10 +202,10 @@ void VoiceHomeMainWindow::on_CheckBoxSvet_stateChanged(int arg1)
 void VoiceHomeMainWindow::on_CheckBoxFan_stateChanged(int arg1)
 {
     if (arg1 == Qt::Checked) {
-        writebluetooth(4);
+        writeSerial(4);
         QMessageBox::about(this, "ОК", "Вентилятор выключен");
     } else {
-        writebluetooth(3);
+        writeSerial(3);
         QMessageBox::about(this, "ОК", "Вентилятор включен");
     }
 }
@@ -164,10 +214,10 @@ void VoiceHomeMainWindow::on_CheckBoxFan_stateChanged(int arg1)
 void VoiceHomeMainWindow::on_CheckBoxChainik_stateChanged(int arg1)
 {
     if (arg1 == Qt::Checked) {
-        writebluetooth(6);
+        writeSerial(6);
         QMessageBox::about(this, "ОК", "Чайник выключен");
     } else {
-        writebluetooth(5);
+        writeSerial(5);
         QMessageBox::about(this, "ОК", "Чайник включен");
     }
 }
@@ -176,10 +226,10 @@ void VoiceHomeMainWindow::on_CheckBoxChainik_stateChanged(int arg1)
 void VoiceHomeMainWindow::on_CheckBoxUserCommand_stateChanged(int arg1)
 {
     if (arg1 == Qt::Checked) {
-        writebluetooth(8);
+        writeSerial(8);
         QMessageBox::about(this, "ОК", ui->UserCommandButton->text() + " выключён");
     } else {
-        writebluetooth(7);
+        writeSerial(7);
         QMessageBox::about(this, "ОК", ui->UserCommandButton->text() + " включен");
     }
 }

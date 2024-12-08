@@ -1,15 +1,17 @@
 QT       += core gui
-QT += bluetooth
 QT += core
-QT += widgets
+QT += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+VERSION = 0.9.1.0
+QMAKE_TARGET_COMPANY = VC
+QMAKE_TARGET_PRODUCT = VoiceHome App
+QMAKE_TARGET_DESCRIPTION = VoiceHome PC App
+QMAKE_TARGET_COPYRIGHT = Egor Arestovich (Creator)
+
 CONFIG += c++17
 
-
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \

@@ -37,9 +37,12 @@ private slots:
 public slots:
     void voicehomeprep();
 
-    void writebluetooth(int command);
+    void writeSerial(int command);
 
     void WriteOnUserButton(QString text);
+
+    void openconnect();
+
 private:
     Ui::VoiceHomeMainWindow *ui;
 };

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 14.0.1, 2024-12-08T12:13:35. -->
+<!-- Written by QtCreator 14.0.1, 2024-12-03T19:54:38. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{8fabfe14-4b50-4006-8893-41d4ffc1f50c}</value>
+  <value type="QByteArray">{b956e852-56aa-441e-a036-e691b655ca7a}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -91,16 +91,16 @@
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="DeviceType">Desktop</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt 6.8.0 (shared) MinGW-w64 MINGW64 (MSYS2)</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt 6.8.0 (shared) MinGW-w64 MINGW64 (MSYS2)</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt6.shared.M2_MinGW-w64_MINGW64_kit</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">mingwggcc</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">mingwggcc</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{b8887b9f-291c-49b8-876f-fa60541e4ae8}</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">1</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\qtprojects\vc - new design\VoiceHome\build\Desktop_Qt_6_8_0_shared_MinGW_w64_MINGW64_MSYS2-Debug</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">D:/qtprojects/vc - new design/VoiceHome/build/Desktop_Qt_6_8_0_shared_MinGW_w64_MINGW64_MSYS2-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\qtprojects\vc - new design\VoiceHome\build\mingwggcc-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">D:/qtprojects/vc - new design/VoiceHome/build/mingwggcc-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -138,8 +138,8 @@
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\qtprojects\vc - new design\VoiceHome\build\Desktop_Qt_6_8_0_shared_MinGW_w64_MINGW64_MSYS2-Release</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">D:/qtprojects/vc - new design/VoiceHome/build/Desktop_Qt_6_8_0_shared_MinGW_w64_MINGW64_MSYS2-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\qtprojects\vc - new design\VoiceHome\build\mingwggcc-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">D:/qtprojects/vc - new design/VoiceHome/build/mingwggcc-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -179,8 +179,8 @@
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\qtprojects\vc - new design\VoiceHome\build\Desktop_Qt_6_8_0_shared_MinGW_w64_MINGW64_MSYS2-Profile</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">D:/qtprojects/vc - new design/VoiceHome/build/Desktop_Qt_6_8_0_shared_MinGW_w64_MINGW64_MSYS2-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\qtprojects\vc - new design\VoiceHome\build\mingwggcc-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">D:/qtprojects/vc - new design/VoiceHome/build/mingwggcc-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -250,7 +250,7 @@
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/qtprojects/vc - new design/VoiceHome/build/Desktop_Qt_6_8_0_shared_MinGW_w64_MINGW64_MSYS2-Release</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/qtprojects/vc - new design/VoiceHome/build/mingwggcc-Release</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
