@@ -48,7 +48,7 @@ bool VoiceHome::isconnectpossible() {
 }
 
 void VoiceHome::checkconnection() {
-    /*if (!isconnectpossible()) {
+    if (!isconnectpossible()) {
         QMessageBox::StandardButton reply = QMessageBox::question(nullptr, "Ошибка!", "Возникла ошибка, показанная вам ранее. Попробовать переподключиться?",
                                                                   QMessageBox::Yes | QMessageBox::No);
         if (reply == QMessageBox::StandardButton::Yes) {
@@ -58,8 +58,7 @@ void VoiceHome::checkconnection() {
         }
     } else {
         loadinterface();
-    }*/
-    loadinterface();
+    }
 }
 
 void VoiceHome::loadinterface() {
