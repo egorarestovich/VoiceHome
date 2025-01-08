@@ -7,6 +7,7 @@
 #include "voicehome.h"
 #include "ui_voicehome.h"
 #include "voicehomemainwindow.h"
+#include <memory>
 
 QString portName = "COM3";
 
@@ -21,8 +22,6 @@ VoiceHome::~VoiceHome()
 {
     delete ui;
 }
-
-
 
 bool VoiceHome::isconnectpossible() {
     try {
@@ -49,21 +48,23 @@ bool VoiceHome::isconnectpossible() {
 }
 
 void VoiceHome::checkconnection() {
-    if (!isconnectpossible()) {
+    /*if (!isconnectpossible()) {
         QMessageBox::StandardButton reply = QMessageBox::question(nullptr, "Ошибка!", "Возникла ошибка, показанная вам ранее. Попробовать переподключиться?",
                                                                   QMessageBox::Yes | QMessageBox::No);
         if (reply == QMessageBox::StandardButton::Yes) {
             checkconnection();
         } else {
-            exit(0);
+            QCoreApplication::quit();
         }
     } else {
         loadinterface();
-    }
+    }*/
+    loadinterface();
 }
-void VoiceHome::loadinterface(){
+
+void VoiceHome::loadinterface() {
     hide();
-    mainapp = new VoiceHomeMainWindow();
+    mainapp = std::make_unique<VoiceHomeMainWindow>();
     mainapp->setAttribute(Qt::WA_ShowWithoutActivating);
     mainapp->setWindowTitle("VoiceHome");
     mainapp->setStyleSheet(R"(
@@ -118,7 +119,6 @@ void VoiceHome::loadinterface(){
         padding: 8px 16px; /* Уменьшенные отступы внутри кнопки */
         font-size: 14px; /* Уменьшенный размер шрифта кнопки */
         border-radius: 8px; /* Закругление углов кнопки */
-
     }
 
     QMessageBox QPushButton:hover {
@@ -133,5 +133,6 @@ void VoiceHome::loadinterface(){
     }
     )");
     mainapp->show();
-    QTimer::singleShot(0, mainapp, &VoiceHomeMainWindow::voicehomeprep);
+    QTimer::singleShot(0, mainapp.get(), &VoiceHomeMainWindow::voicehomeprep);
+
 }

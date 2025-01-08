@@ -26,6 +26,6 @@ public slots:
 
 private:
     Ui::VoiceHome *ui;
-    VoiceHomeMainWindow *mainapp;
+    std::unique_ptr<VoiceHomeMainWindow> mainapp;
 };
 #endif // VOICEHOME_H

@@ -38,6 +38,7 @@ VoiceHomeMainWindow::~VoiceHomeMainWindow()
     delete ui;
 }
 void VoiceHomeMainWindow::openconnect(){
+    on_CommandsButton_clicked();
     try {
         QList<QSerialPortInfo> availablePorts = QSerialPortInfo::availablePorts();
 
@@ -62,9 +63,20 @@ void VoiceHomeMainWindow::openconnect(){
             }
         }
         else {
-                QMessageBox::warning(nullptr, "Ошибка COM порта", "COM-порт не доступен!\
-    \nВозможное решение:\nПопробуйте подключить VoiceHome к COM порту №3");
+            QMessageBox msgBox;
+            msgBox.setWindowTitle("Ошибка COM порта");
+            msgBox.setText("COM-порт не доступен!\nВозможное решение:\nПопробуйте подключить VoiceHome к COM порту №3");
+            msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+
+            msgBox.button(QMessageBox::Yes)->setText("ОК");
+            msgBox.button(QMessageBox::No)->setText("Закрыть");
+
+            QMessageBox::StandardButton reply = static_cast<QMessageBox::StandardButton>(msgBox.exec());
+            if (reply == QMessageBox::Yes) {
                 openconnect();
+            } else {
+                QCoreApplication::quit();
+            }
         }
     } catch (const std::exception &e) {
         QMessageBox::critical(nullptr, "Error", "Произошла ошибка: " + QString::fromStdString(e.what()));
@@ -95,6 +107,9 @@ void VoiceHomeMainWindow::voicehomeprep(){
     ui->co2text->setVisible(false);
     ui->vltext->setVisible(false);
     ui->temptext->setVisible(false);
+    ui->co2icon->setVisible(false);
+    ui->tempicon->setVisible(false);
+    ui->vlicon->setVisible(false);
     ui->CommandsButton->setVisible(true);
     ui->HomeButton->setVisible(true);
 
@@ -140,6 +155,9 @@ void VoiceHomeMainWindow::on_HomeButton_clicked()
     ui->co2text->setVisible(true);
     ui->vltext->setVisible(true);
     ui->temptext->setVisible(true);
+    ui->co2icon->setVisible(true);
+    ui->tempicon->setVisible(true);
+    ui->vlicon->setVisible(true);
     ui->CheckBoxSvet->setVisible(false);
     ui->SvetLabel->setVisible(false);
     ui->CheckBoxFan->setVisible(false);
@@ -167,6 +185,9 @@ void VoiceHomeMainWindow::on_CommandsButton_clicked()
     ui->CheckBoxChainik->setVisible(true);
     ui->UserCommandButton->setVisible(true);
     ui->CheckBoxUserCommand->setVisible(true);
+    ui->co2icon->setVisible(false);
+    ui->tempicon->setVisible(false);
+    ui->vlicon->setVisible(false);
 }
 
 void VoiceHomeMainWindow::writeSerial(int command) {
