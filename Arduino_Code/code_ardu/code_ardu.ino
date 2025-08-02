@@ -13,9 +13,9 @@ DHT dht(DHT_PIN, DHT_TYPE);
 
 #define SMOKE_THRESHOLD    450
 
-SoftwareSerial mySerialBT(9, 10);  // RX=9, TX=10
+SoftwareSerial mySerialBT(9, 10);
 
-char command = 0;  // Команда от Bluetooth или Serial
+char command = 0;
 
 void setup() {
   Serial.begin(9600);
