@@ -15,7 +15,7 @@ DHT dht(DHT_PIN, DHT_TYPE);
 
 SoftwareSerial mySerialBT(9, 10);
 
-char command = 0;
+int command = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -32,8 +32,6 @@ void setup() {
   digitalWrite(RELAY_FREE_PIN, LOW);
 
   dht.begin();
-
-  Serial.println("Система запущена.");
 }
 
 void loop() {
@@ -43,9 +41,18 @@ void loop() {
   if (Serial.available()) {
     command = Serial.read();
   }
+  
+  int cmd = -1;
+  
+  if (command >= 1 && command <= 9) {
+    cmd = command;
+  }
+  else if (command >= '1' && command <= '9') {
+    cmd = command - '0';
+  }
 
-  if (command >= '1' && command <= '9') {
-    handleCommand(command - '0');
+  if (cmd >= 1 && cmd <= 9) {
+    handleCommand(cmd);
     command = 0;
   }
 
@@ -56,7 +63,6 @@ void loop() {
 
   if (smokeValue > SMOKE_THRESHOLD) {
     status = "В доме обнаружена утечка газа";
-    Serial.println("Внимание: утечка газа!");
   }
 
   if (isnan(temperature)) temperature = -99;
@@ -105,7 +111,7 @@ void handleCommand(int cmd) {
       digitalWrite(RELAY_FREE_PIN, LOW);
       break;
     default:
-      Serial.print("Неизвестная команда: ");
+      Serial.print("Неизвестная комманда: ");
       Serial.println(cmd);
       break;
   }
